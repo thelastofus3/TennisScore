@@ -30,6 +30,7 @@ public class NewMatchController extends HttpServlet {
         String secondPlayer = req.getParameter("second-player");
         //check valid is name withoud number or sign
         Match match = service.startMatch(firstPlayer,secondPlayer);
+        //неправильно работает не могу достать uuid
         resp.sendRedirect("/match-score?uuid="+match.getId());
     }
 }

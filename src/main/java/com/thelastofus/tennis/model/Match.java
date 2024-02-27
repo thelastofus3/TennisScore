@@ -48,11 +48,11 @@ public class Match {
         this.playerOne = playerOne;
     }
 
-    public Player getGetPlayerTwo() {
+    public Player getPlayerTwo() {
         return getPlayerTwo;
     }
 
-    public void setGetPlayerTwo(Player getPlayerTwo) {
+    public void setPlayerTwo(Player getPlayerTwo) {
         this.getPlayerTwo = getPlayerTwo;
     }
 
