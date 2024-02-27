@@ -10,30 +10,23 @@ import java.util.ArrayList;
 import java.util.Optional;
 
 public class PlayerDAO {
-    Configuration configuration = new Configuration().addAnnotatedClass(Player.class);
-    SessionFactory sessionFactory = configuration.buildSessionFactory();
-    Session session = sessionFactory.getCurrentSession();
-
-    public boolean findByName(Player player){
-        boolean exists = false;
-        try {
+    private final SessionFactory sessionFactory ;
+    public PlayerDAO() {
+        this.sessionFactory = new Configuration().configure().addAnnotatedClass(Player.class).buildSessionFactory();
+    }
+    public Optional<Player> findByName(String playerName){
+        try(Session session = sessionFactory.openSession()) {
             session.beginTransaction();
-
             String hql = "FROM Player where name = :playerName";
-            Query query = session.createQuery(hql);
-            query.setParameter("playerName",player.getName());
-            Player result = (Player) query.uniqueResult();
-
-            exists = result != null;
-
+            Query<Player> query = session.createQuery(hql, Player.class);
+            query.setParameter("playerName",playerName);
+            Player result = query.uniqueResult();
             session.getTransaction().commit();
-        }finally {
-            sessionFactory.close();
+            return Optional.ofNullable(result);
         }
-        return exists;
     }
     public void save(Player player){
-        try {
+        try(Session session = sessionFactory.openSession()) {
             session.beginTransaction();
 
             session.persist(player);
