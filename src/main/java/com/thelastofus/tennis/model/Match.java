@@ -21,12 +21,15 @@ public class Match {
     @Transient
     private MatchScore matchScore;
 
-    public Match(int id, Player playerOne, Player getPlayerTwo, Player winner, MatchScore matchScore) {
-        this.id = id;
+    public Match(Player playerOne, Player getPlayerTwo, Player winner, MatchScore matchScore) {
         this.playerOne = playerOne;
         this.getPlayerTwo = getPlayerTwo;
         this.winner = winner;
         this.matchScore = matchScore;
+    }
+
+    public Match() {
+
     }
 
     public int getId() {

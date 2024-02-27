@@ -2,6 +2,7 @@ package com.thelastofus.tennis.model;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -13,14 +14,11 @@ public class Player {
     private int id;
     @Column(name = "Name")
     private String name;
-    @OneToMany
-    private List<Match> matches;
+
     public Player(){}
 
-    public Player(int id, String name, List<Match> matches) {
-        this.id = id;
+    public Player(String name) {
         this.name = name;
-        this.matches = matches;
     }
 
     public int getId() {
@@ -39,11 +37,4 @@ public class Player {
         this.name = name;
     }
 
-    public List<Match> getMatches() {
-        return matches;
-    }
-
-    public void setMatches(List<Match> matches) {
-        this.matches = matches;
-    }
 }

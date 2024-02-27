@@ -1,5 +1,6 @@
 package com.thelastofus.tennis.controller;
 
+import com.thelastofus.tennis.service.NewMatchService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -10,6 +11,7 @@ import java.io.IOException;
 
 @WebServlet("/next-match")
 public class NewMatchController extends HttpServlet {
+    NewMatchService service = new NewMatchService();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -18,6 +20,6 @@ public class NewMatchController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+        service.startMatch();
     }
 }
