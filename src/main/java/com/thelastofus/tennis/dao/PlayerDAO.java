@@ -1,6 +1,7 @@
 package com.thelastofus.tennis.dao;
 
 import com.thelastofus.tennis.model.Player;
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -11,8 +12,10 @@ import java.util.Optional;
 
 public class PlayerDAO {
     private final SessionFactory sessionFactory ;
+    private final Configuration  configuration;
     public PlayerDAO() {
-        this.sessionFactory = new Configuration().configure().addAnnotatedClass(Player.class).buildSessionFactory();
+        this.configuration = new Configuration().addAnnotatedClass(Player.class);
+        this.sessionFactory = configuration.buildSessionFactory();
     }
     public Optional<Player> findByName(String playerName){
         try(Session session = sessionFactory.openSession()) {
@@ -23,6 +26,14 @@ public class PlayerDAO {
             Player result = query.uniqueResult();
             session.getTransaction().commit();
             return Optional.ofNullable(result);
+        }catch (HibernateException e) {
+            // Обработка ошибок Hibernate
+            e.printStackTrace();
+            return Optional.empty();
+        } catch (Exception e) {
+            // Общая обработка других исключений
+            e.printStackTrace();
+            return Optional.empty();
         }
     }
     public void save(Player player){
@@ -32,8 +43,22 @@ public class PlayerDAO {
             session.persist(player);
 
             session.getTransaction().commit();
-        }finally {
-            sessionFactory.close();
+        }catch (HibernateException e) {
+            // Обработка ошибок Hibernate
+            e.printStackTrace();
+        } catch (Exception e) {
+            // Общая обработка других исключений
+            e.printStackTrace();
         }
+    }
+
+    public static void main(String[] args) {
+        PlayerDAO playerDAO = new PlayerDAO();
+        Player player = new Player("Denis");
+        Player player1 = new Player("dd");
+        System.out.println(playerDAO.findByName("Denis"));
+        System.out.println(playerDAO.findByName("FFFFD"));
+        playerDAO.save(player);
+        playerDAO.save(player1);
     }
 }

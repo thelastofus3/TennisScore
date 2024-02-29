@@ -17,7 +17,7 @@
     <main>
         <h2>New Match</h2>
         <section>
-            <form method="post" action="https://www.google.com/">
+            <form method="post" action="/new-match">
                 <label for="first-player">Player 1 name: <input id="first-player" type="text" name="first-player" required></label>
                 <label for="second-player">Player 2 name: <input id="second-player" type="text" name="second-player" required></label>
                 <input type="submit" value="Submit">

@@ -1,5 +1,5 @@
 body{
-    background-image: url("Tennis.jfif");
+    background-image: url("../assets/BGTennis.jfif");
     background-size: cover; /* чтобы изображение заполняло всю область фона */
     display: flex; /* использовать flexbox для центрирования */
     justify-content: center; /* центрировать по горизонтали */

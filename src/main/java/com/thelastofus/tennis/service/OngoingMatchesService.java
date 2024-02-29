@@ -14,8 +14,12 @@ public class OngoingMatchesService {
     }
     public UUID generateMatchId(){
         return UUID.randomUUID();
+
     }
     public void add(UUID matchId, Match match){
         ongoingMatch.put(matchId,match);
+    }
+    public Match getMatch(UUID matchId){
+        return ongoingMatch.get(matchId);
     }
 }

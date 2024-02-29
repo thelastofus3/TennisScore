@@ -19,4 +19,13 @@
         <servlet-name>newMatchJSP</servlet-name>
         <url-pattern>/new-match-jsp</url-pattern>
     </servlet-mapping>
+    <servlet>
+
+        <servlet-name>scoreMatchJSP</servlet-name>
+        <jsp-file>/match-score.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>scoreMatchJSP</servlet-name>
+        <url-pattern>/match-score-jsp</url-pattern>
+    </servlet-mapping>
 </web-app>
