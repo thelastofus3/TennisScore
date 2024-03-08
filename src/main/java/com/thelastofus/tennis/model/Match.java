@@ -1,83 +1,51 @@
 package com.thelastofus.tennis.model;
 
 import jakarta.persistence.*;
+import lombok.*;
+import lombok.experimental.FieldDefaults;
 
+@Getter
+@Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity
 @Table(name = "matches")
 public class Match {
     @Id
     @Column(name = "ID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    int id;
     @ManyToOne
     @JoinColumn(name = "Player1")
-    private Player playerOne;
+    Player playerOne;
     @ManyToOne
     @JoinColumn(name="Player2")
-    private Player getPlayerTwo;
+    Player playerTwo;
     @ManyToOne
+    @Builder.Default
     @JoinColumn(name = "Winner")
-    private Player winner;
+    Player winner = new Player();
     @Transient
-    private MatchScore matchScore;
+    @Builder.Default
+    MatchScore matchScore = new MatchScore();
 
-    public Match(Player playerOne, Player getPlayerTwo, Player winner, MatchScore matchScore) {
+    public Match(Player playerOne, Player getPlayerTwo, Player winner) {
         this.playerOne = playerOne;
-        this.getPlayerTwo = getPlayerTwo;
-        this.winner = winner;
-        this.matchScore = matchScore;
-    }
-
-    public Match() {
-
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public Player getPlayerOne() {
-        return playerOne;
-    }
-
-    public void setPlayerOne(Player playerOne) {
-        this.playerOne = playerOne;
-    }
-
-    public Player getPlayerTwo() {
-        return getPlayerTwo;
-    }
-
-    public void setPlayerTwo(Player getPlayerTwo) {
-        this.getPlayerTwo = getPlayerTwo;
-    }
-
-    public Player getWinner() {
-        return winner;
-    }
-
-    public void setWinner(Player winner) {
+        this.playerTwo = getPlayerTwo;
         this.winner = winner;
     }
-
-    public MatchScore getMatchScore() {
-        return matchScore;
+    public Match(Player playerOne, Player getPlayerTwo) {
+        this.playerOne = playerOne;
+        this.playerTwo = getPlayerTwo;
     }
-
-    public void setMatchScore(MatchScore matchScore) {
-        this.matchScore = matchScore;
-    }
-
     @Override
     public String toString() {
         return "Match{" +
                 "id=" + id +
                 ", playerOne=" + playerOne +
-                ", getPlayerTwo=" + getPlayerTwo +
+                ", playerTwo=" + playerTwo +
                 ", winner=" + winner +
                 ", matchScore=" + matchScore +
                 '}';

@@ -5,7 +5,9 @@
   Time: 16:40
   To change this template use File | Settings | File Templates.
 --%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 <html>
 <head>
     <title>Match</title>
@@ -25,22 +27,22 @@
                     <th>POINTS</th>
                 </tr>
                 <tr>
-                    <th>Player1</th>
-                    <th>0</th>
-                    <th>0</th>
-                    <th>0</th>
+                    <th>${match.playerOne.name}</th>
+                    <th>${match.matchScore.sets.get(0)}</th>
+                    <th>${match.matchScore.games.get(0)}</th>
+                    <th>${match.matchScore.points.get(0).getValue()}</th>
                 </tr>
                 <tr>
-                    <th>Player2</th>
-                    <th>0</th>
-                    <th>0</th>
-                    <th>0</th>
+                    <th>${match.playerTwo.name}</th>
+                    <th>${match.matchScore.sets.get(1)}</th>
+                    <th>${match.matchScore.games.get(1)}</th>
+                    <th>${match.matchScore.points.get(1).getValue()}</th>
                 </tr>
             </table>
-            <form method="post" >
-                <input type="submit" value="Player 1">
+            <form method="post">
+                <input type="submit" name="action" value="Player_1">
                 <a href="https://github.com/thelastofus3"><img src="assets/thelastofusLogo.png" alt="thelastofus png"></a>
-                <input type="submit" value="Player 2">
+                <input type="submit" name="action" value="Player_2">
             </form>
         </section>
     </main>

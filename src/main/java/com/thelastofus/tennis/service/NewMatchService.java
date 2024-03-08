@@ -3,11 +3,13 @@ package com.thelastofus.tennis.service;
 import com.thelastofus.tennis.dao.PlayerDAO;
 import com.thelastofus.tennis.model.Match;
 import com.thelastofus.tennis.model.Player;
+import lombok.Getter;
 
 import java.util.UUID;
 
 public class NewMatchService {
     private final PlayerDAO playerDAO;
+    @Getter
     private final OngoingMatchesService ongoingMatchesService;
     public NewMatchService(PlayerDAO playerDAO,OngoingMatchesService ongoingMatchesService) {
         this.playerDAO = playerDAO;
@@ -42,14 +44,11 @@ public class NewMatchService {
         Match match = new Match();
         match.setPlayerOne(firstPlayer);
         match.setPlayerTwo(secondPlayer);
-        UUID matchId = ongoingMatchesService.generateMatchId();
-        ongoingMatchesService.add(matchId,match);
+        ongoingMatchesService.add(match);
         // create match Hashmap<UUID,Player>
         //redirect to /match-score?uuid=$match_id
-
-        return matchId;
-    }
-    public OngoingMatchesService getOngoingMatchesService() {
-        return ongoingMatchesService;
+        System.out.println(match);
+        System.out.println(ongoingMatchesService.getUUID(match));
+        return ongoingMatchesService.getUUID(match);
     }
 }

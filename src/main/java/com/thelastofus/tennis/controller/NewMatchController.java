@@ -3,6 +3,7 @@ package com.thelastofus.tennis.controller;
 import com.thelastofus.tennis.dao.PlayerDAO;
 import com.thelastofus.tennis.service.NewMatchService;
 import com.thelastofus.tennis.service.OngoingMatchesService;
+import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -14,13 +15,14 @@ import java.util.UUID;
 
 @WebServlet("/new-match")
 public class NewMatchController extends HttpServlet {
-    private final NewMatchService service;
-    private final OngoingMatchesService ongoingMatchesService;
+    private  NewMatchService service;
+    private OngoingMatchesService ongoingMatchesService;
 
 
-    public NewMatchController() {
-        this.service = new NewMatchService(new PlayerDAO(), new OngoingMatchesService());
-        this.ongoingMatchesService = service.getOngoingMatchesService();
+    @Override
+    public void init(ServletConfig config) throws ServletException {
+        service = (NewMatchService) config.getServletContext().getAttribute("newMatchService");
+        ongoingMatchesService = (OngoingMatchesService) config.getServletContext().getAttribute("onGoingMatchesService");
     }
 
     @Override
@@ -41,5 +43,4 @@ public class NewMatchController extends HttpServlet {
             resp.getWriter().println("Error idi naxyi");
         }
     }
-
 }

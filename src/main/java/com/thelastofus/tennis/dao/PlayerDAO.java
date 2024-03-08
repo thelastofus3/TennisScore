@@ -52,13 +52,4 @@ public class PlayerDAO {
         }
     }
 
-    public static void main(String[] args) {
-        PlayerDAO playerDAO = new PlayerDAO();
-        Player player = new Player("Denis");
-        Player player1 = new Player("dd");
-        System.out.println(playerDAO.findByName("Denis"));
-        System.out.println(playerDAO.findByName("FFFFD"));
-        playerDAO.save(player);
-        playerDAO.save(player1);
-    }
 }
