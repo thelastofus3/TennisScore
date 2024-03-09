@@ -7,6 +7,7 @@ public class GameMatchScore {
     public void calculateGame(Match match, EPlayer ePlayer){
         int currentPlayerGames = match.getMatchScore().getGames().get(ePlayer.ordinal());
         int oppositePlayerGames = match.getMatchScore().getGames().get(ePlayer.getOppositePlayer().ordinal());
+        //разница в два очка сделать
         if (currentPlayerGames == 6 && oppositePlayerGames < 5){
             increaseSet(match,ePlayer);
         }else if(currentPlayerGames == 7 && oppositePlayerGames < 6){

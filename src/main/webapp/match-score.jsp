@@ -25,27 +25,28 @@
                     <th>SETS</th>
                     <th>GAMES</th>
                     <th>POINTS</th>
-<%--                    <c:if test="${not empty match.matchScore.tieBreakPoints and (match.matchScore.tieBreakPoints.get(0) > 0 || match.matchScore.tieBreakPoints.get(1) > 0)}">--%>
-<%--                        <th>TIEBREAK</th>--%>
-<%--                    </c:if>--%>
+                    <c:if test="${match.matchScore.tieBreak.get(0) > 0 || match.matchScore.tieBreak.get(1) > 0}">
+                        <th>TIEBREAK</th>
+                    </c:if>
                 </tr>
                 <tr>
                     <th>${match.playerOne.name}</th>
                     <th>${match.matchScore.sets.get(0)}</th>
                     <th>${match.matchScore.games.get(0)}</th>
                     <th>${match.matchScore.points.get(0).getValue()}</th>
-<%--                    <c:if test="${match.matchScore.tieBreakPoints.get(0) > 0 || match.matchScore.tieBreakPoints.get(1) > 0}">--%>
-<%--                    <th>${match.matchScore.tieBreakPoints.get(0)}</th>--%>
-<%--                    </c:if>--%>
+                    <%--Возможно реализовать как замена point?--%>
+                    <c:if test="${match.matchScore.tieBreak.get(0) > 0 || match.matchScore.tieBreak.get(1) > 0}">
+                        <th>${match.matchScore.tieBreak.get(0)}</th>
+                    </c:if>
                 </tr>
                 <tr>
                     <th>${match.playerTwo.name}</th>
                     <th>${match.matchScore.sets.get(1)}</th>
                     <th>${match.matchScore.games.get(1)}</th>
                     <th>${match.matchScore.points.get(1).getValue()}</th>
-<%--                    <c:if test="${match.matchScore.tieBreakPoints.get(0) > 0 || match.matchScore.tieBreakPoints.get(1) > 0}">--%>
-<%--                        <th>${match.matchScore.tieBreakPoints.get(1)}</th>--%>
-<%--                    </c:if>--%>
+                    <c:if test="${match.matchScore.tieBreak.get(0) > 0 || match.matchScore.tieBreak.get(1) > 0}">
+                        <th>${match.matchScore.tieBreak.get(1)}</th>
+                    </c:if>
                 </tr>
             </table>
             <form method="post">
