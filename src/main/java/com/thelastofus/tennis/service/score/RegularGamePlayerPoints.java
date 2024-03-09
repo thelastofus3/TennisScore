@@ -9,11 +9,11 @@ import lombok.experimental.FieldDefaults;
 @AllArgsConstructor
 @Getter
 public enum RegularGamePlayerPoints {
-    ZERO("0"),FIFTEEN("15"),THIRTY("30"),FORTY("40"),ADVANTAGE("AD"),SMOOTH(" ");
+    ZERO("0"),FIFTEEN("15"),THIRTY("30"),FORTY("40"),ADVANTAGE("AD");
 
     final String value;
     public RegularGamePlayerPoints next(){
-        if(this == SMOOTH) {
+        if(this == ADVANTAGE) {
             throw new IllegalStateException("Cannot call next() on SMOOTH");
         }else {
             return RegularGamePlayerPoints.values()[this.ordinal() + 1];

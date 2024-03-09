@@ -6,12 +6,13 @@ import com.thelastofus.tennis.model.Player;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class OngoingMatchesService {
     private final Map<UUID, Match> ongoingMatch;
 
     public OngoingMatchesService() {
-        this.ongoingMatch = new HashMap<>();
+        this.ongoingMatch = new ConcurrentHashMap<>();
     }
 
     public UUID add(Match match){

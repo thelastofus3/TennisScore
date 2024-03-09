@@ -11,10 +11,11 @@ import java.util.ArrayList;
 @Getter
 @Setter
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class MatchScore {
+public class MatchScore{
     ArrayList<RegularGamePlayerPoints> points = new ArrayList<>();
     ArrayList<Integer> games = new ArrayList<>();
     ArrayList<Integer> sets = new ArrayList<>();
+    ArrayList<Integer> tieBreak = new ArrayList<>();
 
     public MatchScore() {
         points.add(0,RegularGamePlayerPoints.ZERO);
@@ -23,18 +24,9 @@ public class MatchScore {
         games.add(1,0);
         sets.add(0,0);
         sets.add(1,0);
+        tieBreak.add(0,0);
+        tieBreak.add(1,0);
     }
-    public void getZeroPoints(){
-        points.set(0,RegularGamePlayerPoints.ZERO);
-        points.set(1,RegularGamePlayerPoints.ZERO);
-    }
-    public void increaseGame(EPlayer ePlayer){
-        int playerIndex = (ePlayer == EPlayer.PLAYER_ONE) ? 0 : 1;
-        int currentGames = games.get(playerIndex);
-        games.set(playerIndex,currentGames + 1);
-        getZeroPoints();
-    }
-
     @Override
     public String toString() {
         return "MatchScore{" +

@@ -18,6 +18,6 @@ public class ContextListenerController implements ServletContextListener {
         ServletContext servletContext = sce.getServletContext();
         servletContext.setAttribute("newMatchService", new NewMatchService(playerDAO,ongoingMatchesService));
         servletContext.setAttribute("onGoingMatchesService", ongoingMatchesService);
-        servletContext.setAttribute("matchScoreCalculationService",new MatchScoreCalculationService());
+        servletContext.setAttribute("matchScoreCalculationService", new MatchScoreCalculationService());
     }
 }

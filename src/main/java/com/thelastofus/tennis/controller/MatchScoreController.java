@@ -17,7 +17,8 @@ import java.util.UUID;
 @WebServlet("/match-score")
 public class MatchScoreController extends HttpServlet {
     private OngoingMatchesService ongoingMatchesService ;
-    private MatchScoreCalculationService matchScoreCalculationService ;
+//    private RegularMatchScore regularMatchScore;
+    private MatchScoreCalculationService matchScoreCalculationService;
     private EPlayer ePlayer;
 
     @Override
