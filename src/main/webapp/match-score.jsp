@@ -25,7 +25,7 @@
                     <th>SETS</th>
                     <th>GAMES</th>
                     <th>POINTS</th>
-                    <c:if test="${match.matchScore.tieBreak.get(0) > 0 || match.matchScore.tieBreak.get(1) > 0}">
+                    <c:if test="${match.matchScore.games.get(0) == 6 && match.matchScore.games.get(1) == 6}">
                         <th>TIEBREAK</th>
                     </c:if>
                 </tr>
@@ -34,8 +34,7 @@
                     <th>${match.matchScore.sets.get(0)}</th>
                     <th>${match.matchScore.games.get(0)}</th>
                     <th>${match.matchScore.points.get(0).getValue()}</th>
-                    <%--Возможно реализовать как замена point?--%>
-                    <c:if test="${match.matchScore.tieBreak.get(0) > 0 || match.matchScore.tieBreak.get(1) > 0}">
+                    <c:if test="${match.matchScore.games.get(0) == 6 && match.matchScore.games.get(1) == 6}">
                         <th>${match.matchScore.tieBreak.get(0)}</th>
                     </c:if>
                 </tr>
@@ -44,7 +43,7 @@
                     <th>${match.matchScore.sets.get(1)}</th>
                     <th>${match.matchScore.games.get(1)}</th>
                     <th>${match.matchScore.points.get(1).getValue()}</th>
-                    <c:if test="${match.matchScore.tieBreak.get(0) > 0 || match.matchScore.tieBreak.get(1) > 0}">
+                    <c:if test="${match.matchScore.games.get(0) == 6 && match.matchScore.games.get(1) == 6}">
                         <th>${match.matchScore.tieBreak.get(1)}</th>
                     </c:if>
                 </tr>

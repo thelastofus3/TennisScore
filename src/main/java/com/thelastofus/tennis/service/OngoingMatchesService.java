@@ -34,5 +34,14 @@ public class OngoingMatchesService {
     public void updateMatch(UUID matchId, Match updatedMatch) {
         ongoingMatch.put(matchId, updatedMatch);
     }
+    public void removeMatch(UUID matchId){
+        ongoingMatch.remove(matchId);
+    }
 
+    @Override
+    public String toString() {
+        return "OngoingMatchesService{" +
+                "ongoingMatch=" + ongoingMatch +
+                '}';
+    }
 }

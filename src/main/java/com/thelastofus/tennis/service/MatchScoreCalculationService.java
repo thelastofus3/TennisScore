@@ -1,15 +1,18 @@
 package com.thelastofus.tennis.service;
 
 import com.thelastofus.tennis.model.Match;
-import com.thelastofus.tennis.service.score.EPlayer;
-import com.thelastofus.tennis.service.score.PointMatchScore;
-import com.thelastofus.tennis.service.score.GameMatchScore;
+import com.thelastofus.tennis.service.score.*;
 
 public class MatchScoreCalculationService {
-    PointMatchScore regularMatchScore = new PointMatchScore();
-    GameMatchScore setMatchScore = new GameMatchScore();
-    public void calculateScore(Match match, EPlayer ePlayer){
-        regularMatchScore.calculatePoint(match,ePlayer);
-        setMatchScore.calculateGame(match,ePlayer);
+    RegularScoreStrategy regularScoreStrategy = new RegularScoreStrategy();
+    TieBreakScoreStrategy tieBreakScoreStrategy = new TieBreakScoreStrategy();
+    public State calculateScore(Match match, EPlayer ePlayer){
+        int currentPlayerGames = match.getMatchScore().getGames().get(ePlayer.ordinal());
+        int oppositePlayerGames = match.getMatchScore().getGames().get(ePlayer.getOppositePlayer().ordinal());
+        if (currentPlayerGames == 6 && oppositePlayerGames == 6){
+            return tieBreakScoreStrategy.calculateScore(match,ePlayer);
+        } else {
+            return regularScoreStrategy.calculateScore(match,ePlayer);
+        }
     }
 }
