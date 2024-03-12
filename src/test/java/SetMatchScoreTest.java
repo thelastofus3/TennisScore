@@ -1,5 +1,4 @@
 import com.thelastofus.tennis.model.Match;
-import com.thelastofus.tennis.model.MatchScore;
 import com.thelastofus.tennis.service.score.EPlayer;
 import com.thelastofus.tennis.service.score.RegularMatchScore;
 import com.thelastofus.tennis.service.score.SetMatchScore;

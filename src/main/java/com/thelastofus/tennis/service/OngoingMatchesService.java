@@ -38,10 +38,4 @@ public class OngoingMatchesService {
         ongoingMatch.remove(matchId);
     }
 
-    @Override
-    public String toString() {
-        return "OngoingMatchesService{" +
-                "ongoingMatch=" + ongoingMatch +
-                '}';
-    }
 }

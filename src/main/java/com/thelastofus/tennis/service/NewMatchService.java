@@ -47,8 +47,6 @@ public class NewMatchService {
         ongoingMatchesService.add(match);
         // create match Hashmap<UUID,Player>
         //redirect to /match-score?uuid=$match_id
-        System.out.println(match);
-        System.out.println(ongoingMatchesService.getUUID(match));
         return ongoingMatchesService.getUUID(match);
     }
 }

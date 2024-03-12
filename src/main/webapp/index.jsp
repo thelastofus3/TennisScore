@@ -18,7 +18,7 @@
         <h2>Tennis Score Board</h2>
         <section>
             <div class="left-content">
-                <h3><a href="new-match.jsp">NEW</a></h3>
+                <h3><a href="new-match">NEW</a></h3>
                 <p>start new match</p>
             </div>
         </section><section>

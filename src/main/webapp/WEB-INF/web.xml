@@ -31,13 +31,14 @@
         <url-pattern>/match-score-jsp</url-pattern>
     </servlet-mapping>
 
-<!--    <servlet>-->
-<!--        <servlet-name>scoreMatchJSP</servlet-name>-->
-<!--        <jsp-file>/match-score.jsp</jsp-file>-->
-<!--    </servlet>-->
-<!--    <servlet-mapping>-->
-<!--        <servlet-name>scoreMatchJSP</servlet-name>-->
-<!--        <url-pattern>/match-score-jsp</url-pattern>-->
-<!--    </servlet-mapping>-->
+    <servlet>
+        <servlet-name>winnerJSP</servlet-name>
+        <jsp-file>/winner.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>winnerJSP</servlet-name>
+        <url-pattern>/winner</url-pattern>
+    </servlet-mapping>
+
 
 </web-app>

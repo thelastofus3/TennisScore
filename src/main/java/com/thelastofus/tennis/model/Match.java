@@ -1,5 +1,6 @@
 package com.thelastofus.tennis.model;
 
+import com.thelastofus.tennis.dto.MatchScoreDTO;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -29,7 +30,7 @@ public class Match {
     Player winner = new Player();
     @Transient
     @Builder.Default
-    MatchScore matchScore = new MatchScore();
+    MatchScoreDTO matchScore = new MatchScoreDTO();
 
     public Match(Player playerOne, Player getPlayerTwo, Player winner) {
         this.playerOne = playerOne;
@@ -39,15 +40,5 @@ public class Match {
     public Match(Player playerOne, Player getPlayerTwo) {
         this.playerOne = playerOne;
         this.playerTwo = getPlayerTwo;
-    }
-    @Override
-    public String toString() {
-        return "Match{" +
-                "id=" + id +
-                ", playerOne=" + playerOne +
-                ", playerTwo=" + playerTwo +
-                ", winner=" + winner +
-                ", matchScore=" + matchScore +
-                '}';
     }
 }

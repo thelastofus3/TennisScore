@@ -1,6 +1,8 @@
 package com.thelastofus.tennis.controller;
 
+import com.thelastofus.tennis.dao.MatchDAO;
 import com.thelastofus.tennis.model.Match;
+import com.thelastofus.tennis.model.Player;
 import com.thelastofus.tennis.service.MatchScoreCalculationService;
 import com.thelastofus.tennis.service.OngoingMatchesService;
 import com.thelastofus.tennis.service.score.EPlayer;
@@ -21,7 +23,6 @@ public class MatchScoreController extends HttpServlet {
     private MatchScoreCalculationService matchScoreCalculationService;
     private EPlayer ePlayer;
     private State state;
-
     @Override
     public void init(ServletConfig config) throws ServletException {
         super.init(config);
@@ -35,8 +36,6 @@ public class MatchScoreController extends HttpServlet {
         UUID uuid = UUID.fromString(uuidString);
         Match match = ongoingMatchesService.getMatch(uuid);
 
-        System.out.println(ongoingMatchesService);
-
         req.setAttribute("match",match);
 
         req.getRequestDispatcher("/match-score-jsp").forward(req,resp);
@@ -47,24 +46,29 @@ public class MatchScoreController extends HttpServlet {
         String uuidString = req.getParameter("uuid");
         UUID matchId = UUID.fromString(uuidString);
         Match match = ongoingMatchesService.getMatch(matchId);
+        EPlayer ePlayer = getPlayerFromRequest(req);
+
+        state = matchScoreCalculationService.calculateScore(match, ePlayer);
+
+        if (state == State.PLAYER_ONE_WON || state == State.PLAYER_TWO_WON) {
+            handleMatchWon(req, resp, match, state, matchId);
+        } else {
+            resp.sendRedirect("/match-score?uuid=" + matchId.toString());
+        }
+    }
+    private EPlayer getPlayerFromRequest(HttpServletRequest req) {
         String point = req.getParameter("action");
-        if(point.equals("Player_1")){
-            ePlayer = EPlayer.PLAYER_ONE;
-        }else{
-            ePlayer = EPlayer.PLAYER_TWO;
-        }
-        state = matchScoreCalculationService.calculateScore(match,ePlayer);
-        resp.sendRedirect("/match-score?uuid=" + matchId.toString());
+        return point.equals("Player_1") ? EPlayer.PLAYER_ONE : EPlayer.PLAYER_TWO;
+    }
 
-//        Если матч закончился:
-//        Удаляем матч из коллекции текущих матчей -> метод реализовал, осталось только правильно внедрить в код
-//        Записываем законченный матч в SQL базу данных -> реализовать MatchDAO
-//        Рендерим финальный счёт -> добавь еще одну jsp чтоб круто это выводить и добовлять победителя для отображения и записи в БД
+    private void handleMatchWon(HttpServletRequest req, HttpServletResponse resp, Match match, State state, UUID matchId) throws IOException {
+        Player winner = (state == State.PLAYER_ONE_WON) ? match.getPlayerOne() : match.getPlayerTwo();
+        match.setWinner(winner);
+        MatchDAO matchDAO = new MatchDAO();
+        matchDAO.save(match);
 
-        if (state == State.PLAYER_ONE_WON){
-            ongoingMatchesService.removeMatch(matchId);
-        }else if (state == State.PLAYER_TWO_WON){
-            ongoingMatchesService.removeMatch(matchId);
-        }
+        req.getSession().setAttribute("match", match);
+        resp.sendRedirect("/winner");
+        ongoingMatchesService.removeMatch(matchId);
     }
 }
