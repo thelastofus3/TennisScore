@@ -12,13 +12,12 @@ body{
     width: 50%;
     box-shadow: 0 0 200px rgba(0, 0, 0, 1);
     background-color: #A78B71;
-    height: 30%;
+    height: 45%;
     border-radius: 30px;
 }
-
 h2{
     text-align: center;
-    margin-bottom: 13px;
+    margin-bottom: 0;
 }
 section {
     margin: 0 auto;
@@ -44,23 +43,46 @@ table{
 th ,td,table{
     border: 2px solid white;
 }
-form {
-    display: flex;
-    justify-content: space-between;
-    padding-top: 15px;
-}
-
-input[type="submit"] {
-    width: 35%;
-    height: 2em;
-    font-size: 1.1rem;
-    background-color: #3b3b4f;
-    border-color: white;
-    color: #ffffff;
-    min-width: 150px;
-}
 img{
     padding-top: 10px;
     width: 30px;
     height: 30px;
+}
+div{
+    height: 370px;
+}
+.search-clear{
+    color: #ffffff;
+    background-color: #3b3b4f;
+    font-size: 1rem;
+    width: 15%;
+}
+.name-find{
+    display: flex;
+}
+fieldset{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    border: none;
+    margin: 0;
+    padding-left: 0;
+    padding-right: 0;
+}
+.search-field{
+    width: 70%;
+}
+label{
+    margin-top: 6.5px;
+    color: black;
+    font-size: 18px;
+}
+.home{
+    color: #ffffff;
+    background-color: #3b3b4f;
+    font-size: 1rem;
+    width: 100%;
+    border: none;
+    margin-bottom: 10px;
 }

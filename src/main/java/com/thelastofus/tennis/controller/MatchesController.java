@@ -12,7 +12,7 @@ import java.io.IOException;
 public class MatchesController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("").forward(req,resp);
+        req.getRequestDispatcher("/matches-jsp").forward(req,resp);
     }
 
 }

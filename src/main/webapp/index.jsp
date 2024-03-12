@@ -23,7 +23,7 @@
             </div>
         </section><section>
         <div class="right-content">
-            <h3><a href="google.com">MATCHES</a></h3>
+            <h3><a href="matches">MATCHES</a></h3>
             <p>list of finished matches</p>
         </div>
     </section>

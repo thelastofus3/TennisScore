@@ -3,6 +3,7 @@ package com.thelastofus.tennis.controller;
 import com.thelastofus.tennis.dao.MatchDAO;
 import com.thelastofus.tennis.model.Match;
 import com.thelastofus.tennis.model.Player;
+import com.thelastofus.tennis.service.FinishedMatchesPersistenceService;
 import com.thelastofus.tennis.service.MatchScoreCalculationService;
 import com.thelastofus.tennis.service.OngoingMatchesService;
 import com.thelastofus.tennis.service.score.EPlayer;
@@ -21,13 +22,14 @@ import java.util.UUID;
 public class MatchScoreController extends HttpServlet {
     private OngoingMatchesService ongoingMatchesService ;
     private MatchScoreCalculationService matchScoreCalculationService;
-    private EPlayer ePlayer;
+    private FinishedMatchesPersistenceService finishedMatchesPersistenceService;
     private State state;
     @Override
     public void init(ServletConfig config) throws ServletException {
         super.init(config);
         ongoingMatchesService = (OngoingMatchesService) config.getServletContext().getAttribute("onGoingMatchesService");
         matchScoreCalculationService = (MatchScoreCalculationService) config.getServletContext().getAttribute("matchScoreCalculationService");
+        finishedMatchesPersistenceService = (FinishedMatchesPersistenceService) config.getServletContext().getAttribute("finishedMatchesPersistenceService");
     }
 
     @Override
@@ -51,7 +53,7 @@ public class MatchScoreController extends HttpServlet {
         state = matchScoreCalculationService.calculateScore(match, ePlayer);
 
         if (state == State.PLAYER_ONE_WON || state == State.PLAYER_TWO_WON) {
-            handleMatchWon(req, resp, match, state, matchId);
+            handleMatchWon(req, resp, state, matchId);
         } else {
             resp.sendRedirect("/match-score?uuid=" + matchId.toString());
         }
@@ -61,11 +63,12 @@ public class MatchScoreController extends HttpServlet {
         return point.equals("Player_1") ? EPlayer.PLAYER_ONE : EPlayer.PLAYER_TWO;
     }
 
-    private void handleMatchWon(HttpServletRequest req, HttpServletResponse resp, Match match, State state, UUID matchId) throws IOException {
+    private void handleMatchWon(HttpServletRequest req, HttpServletResponse resp, State state, UUID matchId) throws IOException {
+        Match match = ongoingMatchesService.getMatch(matchId);
         Player winner = (state == State.PLAYER_ONE_WON) ? match.getPlayerOne() : match.getPlayerTwo();
         match.setWinner(winner);
-        MatchDAO matchDAO = new MatchDAO();
-        matchDAO.save(match);
+
+        finishedMatchesPersistenceService.saveFinishedMatch(match);
 
         req.getSession().setAttribute("match", match);
         resp.sendRedirect("/winner");

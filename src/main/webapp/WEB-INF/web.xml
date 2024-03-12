@@ -40,5 +40,14 @@
         <url-pattern>/winner</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>mathesJSP</servlet-name>
+        <jsp-file>/matches.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>mathesJSP</servlet-name>
+        <url-pattern>/matches-jsp</url-pattern>
+    </servlet-mapping>
+
 
 </web-app>
