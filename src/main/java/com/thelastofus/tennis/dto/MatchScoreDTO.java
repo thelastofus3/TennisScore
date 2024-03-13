@@ -13,10 +13,10 @@ import java.util.Arrays;
 @Setter
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class MatchScoreDTO {
-    ArrayList<RegularGamePlayerPoints> points = new ArrayList<>();
-    ArrayList<Integer> games = new ArrayList<>();
-    ArrayList<Integer> sets = new ArrayList<>();
-    ArrayList<Integer> tieBreak = new ArrayList<>();
+    ArrayList<RegularGamePlayerPoints> points ;
+    ArrayList<Integer> games ;
+    ArrayList<Integer> sets ;
+    ArrayList<Integer> tieBreak ;
 
     public MatchScoreDTO() {
         points = new ArrayList<>(Arrays.asList(RegularGamePlayerPoints.ZERO, RegularGamePlayerPoints.ZERO));

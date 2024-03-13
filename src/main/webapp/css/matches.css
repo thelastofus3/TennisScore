@@ -12,7 +12,7 @@ body{
     width: 50%;
     box-shadow: 0 0 200px rgba(0, 0, 0, 1);
     background-color: #A78B71;
-    height: 45%;
+    height: 48%;
     border-radius: 30px;
 }
 h2{
@@ -24,14 +24,6 @@ section {
     width: 90%;
     height: 210px;
 
-}
-input{
-    background-color: #ffffff;
-    border: 1px solid #ffffff;
-    color: #3b3b4f;
-    margin: 10px 0 0 0;
-    width: 100%;
-    min-height: 2em;
 }
 table{
     border-collapse: collapse;
@@ -56,33 +48,61 @@ div{
     background-color: #3b3b4f;
     font-size: 1rem;
     width: 15%;
+    border: 1px solid #ffffff;
 }
 .name-find{
     display: flex;
+    margin: 0;
+    height: 45px;
 }
 fieldset{
     display: flex;
-    align-items: center;
     gap: 10px;
     width: 100%;
     border: none;
     margin: 0;
     padding-left: 0;
     padding-right: 0;
+    height: 30px;
 }
 .search-field{
     width: 70%;
 }
 label{
-    margin-top: 6.5px;
+    margin-top: 2.5px;
     color: black;
     font-size: 18px;
 }
-.home{
+.home-button{
     color: #ffffff;
     background-color: #3b3b4f;
     font-size: 1rem;
     width: 100%;
-    border: none;
     margin-bottom: 10px;
+    border: 1px solid #ffffff;
+}
+.pagination {
+    display: flex;
+    justify-content: center;
+    padding: 0;
+    list-style: none;
+}
+
+.page-item {
+    margin: 0 1px;
+}
+
+.page-link {
+    display: block;
+    padding: 10px 15px;
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    color: #3b3b4f;
+    text-decoration: none;
+}
+
+.page-link:hover {
+    background-color: #3b3b4f;
+    color: #ffffff;
+    text-decoration: none;
 }

@@ -24,4 +24,11 @@ public class Player {
         this.name = name;
     }
 
+    @Override
+    public String toString() {
+        return "Player{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }

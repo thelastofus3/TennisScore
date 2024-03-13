@@ -1,6 +1,5 @@
 package com.thelastofus.tennis.controller;
 
-import com.thelastofus.tennis.dao.PlayerDAO;
 import com.thelastofus.tennis.service.NewMatchService;
 import com.thelastofus.tennis.service.OngoingMatchesService;
 import jakarta.servlet.ServletConfig;
@@ -34,9 +33,7 @@ public class NewMatchController extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String firstPlayer = req.getParameter("first-player");
         String secondPlayer = req.getParameter("second-player");
-        //check valid is name withoud number or sign
         UUID matchId = service.startMatch(firstPlayer,secondPlayer);
-        //неправильно работает не могу достать uuid
         if(matchId != null) {
             resp.sendRedirect("/match-score?uuid=" + matchId.toString());
         }else{

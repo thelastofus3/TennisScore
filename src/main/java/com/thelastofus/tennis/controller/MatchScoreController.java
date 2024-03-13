@@ -1,6 +1,5 @@
 package com.thelastofus.tennis.controller;
 
-import com.thelastofus.tennis.dao.MatchDAO;
 import com.thelastofus.tennis.model.Match;
 import com.thelastofus.tennis.model.Player;
 import com.thelastofus.tennis.service.FinishedMatchesPersistenceService;

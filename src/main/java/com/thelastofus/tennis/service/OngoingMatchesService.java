@@ -1,9 +1,7 @@
 package com.thelastofus.tennis.service;
 
 import com.thelastofus.tennis.model.Match;
-import com.thelastofus.tennis.model.Player;
 
-import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
@@ -30,9 +28,6 @@ public class OngoingMatchesService {
             }
         }
         return null;
-    }
-    public void updateMatch(UUID matchId, Match updatedMatch) {
-        ongoingMatch.put(matchId, updatedMatch);
     }
     public void removeMatch(UUID matchId){
         ongoingMatch.remove(matchId);

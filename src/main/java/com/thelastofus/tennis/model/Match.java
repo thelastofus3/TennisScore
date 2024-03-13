@@ -41,4 +41,15 @@ public class Match {
         this.playerOne = playerOne;
         this.playerTwo = getPlayerTwo;
     }
+
+    @Override
+    public String toString() {
+        return "Match{" +
+                "id=" + id +
+                ", playerOne=" + playerOne +
+                ", playerTwo=" + playerTwo +
+                ", winner=" + winner +
+                ", matchScore=" + matchScore +
+                '}';
+    }
 }

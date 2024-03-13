@@ -7,7 +7,6 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.query.Query;
 
-import java.util.ArrayList;
 import java.util.Optional;
 
 public class PlayerDAO {
@@ -27,13 +26,9 @@ public class PlayerDAO {
             session.getTransaction().commit();
             return Optional.ofNullable(result);
         }catch (HibernateException e) {
-            // Обработка ошибок Hibernate
-            e.printStackTrace();
-            return Optional.empty();
+            throw new Error("Hibernate Error Player: " + e.getMessage());
         } catch (Exception e) {
-            // Общая обработка других исключений
-            e.printStackTrace();
-            return Optional.empty();
+            throw new Error("Exception Player: " + e.getMessage());
         }
     }
     public void save(Player player){
@@ -44,11 +39,9 @@ public class PlayerDAO {
 
             session.getTransaction().commit();
         }catch (HibernateException e) {
-            // Обработка ошибок Hibernate
-            e.printStackTrace();
+            throw new Error("Hibernate Error Player: " + e.getMessage());
         } catch (Exception e) {
-            // Общая обработка других исключений
-            e.printStackTrace();
+            throw new Error("Exception Player: " + e.getMessage());
         }
     }
 

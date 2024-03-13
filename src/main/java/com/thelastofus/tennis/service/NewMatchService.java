@@ -17,9 +17,6 @@ public class NewMatchService {
     }
 
     public UUID startMatch(String firstPlayerName, String secondPlayerName) {
-        //get parametr ; +
-        //check if players exists in db
-        // if exist -> get Player from db -> else(null) create
         Player firstPlayer = playerDAO.findByName(firstPlayerName).orElseGet(() -> {
             Player player = new Player(firstPlayerName);
             try {
@@ -40,13 +37,11 @@ public class NewMatchService {
            }
            return player;
         });
-        //generate UUID
         Match match = new Match();
         match.setPlayerOne(firstPlayer);
         match.setPlayerTwo(secondPlayer);
         ongoingMatchesService.add(match);
-        // create match Hashmap<UUID,Player>
-        //redirect to /match-score?uuid=$match_id
+
         return ongoingMatchesService.getUUID(match);
     }
 }
