@@ -37,7 +37,7 @@ public class NewMatchController extends HttpServlet {
         if(matchId != null) {
             resp.sendRedirect("/match-score?uuid=" + matchId.toString());
         }else{
-            resp.getWriter().println("Error idi naxyi");
+            throw new Error("Match is null");
         }
     }
 }
